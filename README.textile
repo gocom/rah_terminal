@@ -1,0 +1,28 @@
+h1. rah_terminal
+
+p. Rah_terminal is a plugin for "Textpattern CMS.":http:://textpattern.com It provides a terminal emulator interface for executing external applications, commands and evaluating PHP code, right from Textpattern's admin-panel.
+
+h2. Requirements
+
+* Textpattern v4.5.0 (r3734) or newer.
+
+h2. Extending
+
+p. The plugin comes small API which can be used to add additional terminal types to plugin. By default the plugin comes with options _PHP_, _SQL_ and _Shell_, but that can be extended to include a _Textile Generator_ among other things.
+
+p. These added terminal types act as the built in do. They register a callback function, and everything that the callback functions prints or returns to global scope, will be shown to the user. Thrown exceptions and errors are captured and show to the user too.
+
+h3. rah_terminal::get() - Gets an instance of rah_terminal
+
+bc. object rah_terminal::get(bool $new);
+
+h3. rah_terminal::add_terminal() - Adds a new terminal option
+
+bc. object rah_terminal::add_terminal( string $name, string|null $label, callback $callback );
+
+bc. rah_terminal::get()
+	->add_terminal('abc_name', gTxt('abc_label'), 'abc_callback_function');
+
+h3. add_privs() - Grants user-groups privileges to a terminal option
+
+bc. mixed add_privs(string $event, string $groups);
