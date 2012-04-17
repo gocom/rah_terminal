@@ -5,6 +5,7 @@ p. Rah_terminal is a plugin for "Textpattern CMS.":http:://textpattern.com It pr
 h2. Requirements
 
 * Textpattern v4.5.0 (r3734) or newer.
+* PHP5
 
 h2. Extending
 
