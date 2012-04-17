@@ -497,7 +497,7 @@ EOF;
 	 * Redirects to the plugin panel
 	 */
 
-	function prefs() {
+	static public function prefs() {
 		header('Location: ?event=rah_terminal');
 		echo 
 			'<p>'.n.
