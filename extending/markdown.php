@@ -9,7 +9,7 @@
  * @date 2012-
  * @license GNU GPLv2
  *
- * Requires PHP Markup
+ * Requires PHP Markdown
  * http://michelf.com/projects/php-markdown/
  *
  * Copyright (C) 2012 Jukka Svahn <http://rahforum.biz>
@@ -32,7 +32,7 @@ class rah_terminal__markdown {
 
 	/**
 	 * Process Markdown
-	 * @param string $markup Textile Markup passed to the function.
+	 * @param string $markup Markdown markup passed to the function.
 	 * @return string HTML
 	 */
 
