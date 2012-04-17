@@ -243,7 +243,7 @@ class rah_terminal {
 	}
 	
 	/**
-	 * Execute commands, content or code
+	 * Executes commands, content or code
 	 */
 	
 	public function execute() {
@@ -361,7 +361,7 @@ class rah_terminal {
 	}
 	
 	/**
-	 * Execute PHP
+	 * Evaluates PHP
 	 * @param string $php
 	 * @return mixed Returned value, NULL or FALSE
 	 */
@@ -371,7 +371,7 @@ class rah_terminal {
 	}
 	
 	/**
-	 * Execute shell
+	 * Executes shell commands
 	 * @param string $cmd
 	 * @return string Standard output
 	 */
@@ -382,7 +382,7 @@ class rah_terminal {
 	}
 	
 	/**
-	 * Execute query
+	 * Executes a DB query
 	 * @param string $sql
 	 * @return mixed
 	 */
@@ -494,7 +494,7 @@ EOF;
 	}
 
 	/**
-	 * Redirects to the plugin panel
+	 * Redirects to the plugin's panel
 	 */
 
 	static public function prefs() {
