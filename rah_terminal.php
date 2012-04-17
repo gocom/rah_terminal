@@ -200,6 +200,7 @@ class rah_terminal {
 		global $event;
 		
 		pagetop(gTxt('rah_terminal'));
+		sort($this->terminal_labels);
 		
 		echo
 			'<form method="post" action="index.php" id="rah_terminal_container" class="txp-container rah_ui_container">'.n.
