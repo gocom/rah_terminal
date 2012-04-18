@@ -172,6 +172,7 @@ class rah_terminal {
 		elseif(!in_array($label, $this->terminal_labels)) {
 			$this->terminals[$name] = $callback;
 			$this->terminal_labels[$name] = $label;
+			asort($this->terminal_labels);
 		}
 		
 		return $this;
@@ -200,7 +201,6 @@ class rah_terminal {
 		global $event;
 		
 		pagetop(gTxt('rah_terminal'));
-		asort($this->terminal_labels);
 		
 		echo
 			'<form method="post" action="index.php" id="rah_terminal_container" class="txp-container rah_ui_container">'.n.
