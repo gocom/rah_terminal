@@ -9,21 +9,37 @@ h2. Requirements
 
 h2. Extending
 
-p. The plugin comes small API which can be used to add additional terminal types to plugin. By default the plugin comes with options _PHP_, _SQL_ and _Shell_, but that can be extended to include a _Textile Generator_ among other things.
+p. The plugin comes small API which can be used to add additional terminal types to plugin. By default the plugin comes with options PHP, SQL and Shell, but that can be extended to include a _Textile Generator_ among other things. These added terminal types act same as the built in ones do. A callback function is registered, and everything that the callback functions prints or returns to global scope, will be shown to the user. Thrown exceptions and errors are captured too.
 
-p. These added terminal types act as the built in do. They register a callback function, and everything that the callback functions prints or returns to global scope, will be shown to the user. Thrown exceptions and errors are captured and show to the user too.
+p. See "Extending":https://github.com/gocom/rah_terminal/tree/master/extending directory for existing modules, and examples.
 
-h3. rah_terminal::get() - Gets an instance of rah_terminal
+h3. rah_terminal::get() - Gets an instance of rah_terminal class
 
 bc. object rah_terminal::get(bool $new);
+
+p. @get()@ is your standard factory method, following a loose singleton pattern. It returns an instance of the rah_terminal class. When creating an object, always use @get()@ instead of creating new instance yourself.
 
 h3. rah_terminal::add_terminal() - Adds a new terminal option
 
 bc. object rah_terminal::add_terminal( string $name, string|null $label, callback $callback );
 
+p. @add_terminal()@ adds and registers a new terminal option. The first parameter @$name@ is a unique name for the terminal option, @$label@ is the label shown to users and @$callback@ is the callback function.
+
+p. When registering new labels, please use prefixes in the @$name@ and the @$callback@ function to avoid conflicts with other codebases, including Textpattern core and rah_terminal itself. For more information about prefixing please see Textpattern's "Plugin Development Guidelines.":http://textpattern.net/wiki/index.php?title=Plugin_Development_Guidelines
+
+p. To use @add_terminal()@ you would first get an instance of rah_terminal using the static method @get()@.
+
 bc. rah_terminal::get()
-	->add_terminal('abc_name', gTxt('abc_label'), 'abc_callback_function');
+	->add_terminal('abc_example', gTxt('abc_example_label'), 'abc_example_function');
 
 h3. add_privs() - Grants user-groups privileges to a terminal option
 
 bc. mixed add_privs(string $event, string $groups);
+
+p. @add_privs()@ is a standard Textpattern function. In Textpattern it's used to grant permission. Rah_terminal uses it for same thing, to grant users access to terminal options. This is to allow and limit from certain groups access to some terminals, while allowing access to others.
+
+p. @$event@ is the name of the "event" which the access is allowed, and @$groups@ is comma-separated list of user-group numbers. Note that neither allow any whitespace.
+
+p. Rah_terminal's events are prefixed with @rah_terminal.@. And terminal event name would consist of the prefix, followed by the terminal options name, given with the @add_terminal()@ methods first parameter. For terminal option named as @abc_example@, add_privs line would look like following:
+
+bc. add_privs('rah_terminal.abc_example', '1,2,3,4');
