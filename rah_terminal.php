@@ -216,31 +216,6 @@ class rah_terminal {
 			'	</p>'.n.
 			'</form>' .n;
 	}
-
-	/**
-	 * Gets bookmarks
-	 * @return array
-	 */
-	
-	private function get_bookmarks() {
-		global $prefs;
-		
-		$out = array();
-		
-		foreach($prefs as $name => $value) {
-			
-			if(strpos($name, 'rah_terminal_b.') !== 0) {
-				continue;
-			}
-			
-			$n = explode('.', $name);
-			$out[$name] = implode('.', array_slice($n, 1));
-		}
-		
-		asort($out);
-		
-		return $out;
-	}
 	
 	/**
 	 * Executes commands, content or code
