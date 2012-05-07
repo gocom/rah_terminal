@@ -4,10 +4,6 @@ p. This directory contains collection of optional modules for rah_terminal. Thes
 
 p. Modules included in the directory are as follows.
 
-h2. textile.php
-
-p. Generates and prints out HTML markup from given Textile markup. Uses the Textile class included with your Textpattern installation.
-
 h2. markdown.php
 
 p. The module generates and prints out HTML markup from given Markdown syntax. Uses and requires "PHP Markdown":https://github.com/michelf/php-markdown/ library.
@@ -17,3 +13,11 @@ p. To configure PHP Markdown, download @markdown.php@ and upload it to your serv
 bc. define('rah_terminal__markdown', '/absolute/path/to/markdown.php');
 
 p. The constant @rah_terminal__markdown@ should contain an absolute path to markdown.php file.
+
+h2. textile.php
+
+p. Generates and prints out HTML markup from given Textile markup. Uses the Textile class included with your Textpattern installation.
+
+h2. txpmarkup.php
+
+p. Parses and prints out results of given Textpattern's @<txp:tag />@ markup.
