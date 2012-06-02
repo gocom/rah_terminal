@@ -409,10 +409,6 @@ class rah_terminal {
 		
 		echo <<<EOF
 			<style type="text/css">
-				#rah_terminal_container {
-					width: 650px;
-					margin: 0 auto;
-				}
 				#rah_terminal_container textarea {
 					width: 100%;
 				}
