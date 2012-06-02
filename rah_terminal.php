@@ -203,7 +203,7 @@ class rah_terminal {
 		pagetop(gTxt('rah_terminal'));
 		
 		echo
-			'<form method="post" action="index.php" id="rah_terminal_container" class="txp-container rah_ui_container">'.n.
+			'<form method="post" action="index.php" id="rah_terminal_container" class="txp-container">'.n.
 			eInput($event).
 			sInput('execute').
 			tInput().n.
