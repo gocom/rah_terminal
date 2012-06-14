@@ -247,7 +247,7 @@ class rah_terminal {
 			try {
 				ob_start();
 				@error_reporting(-1);
-				@set_error_handler(array('rah_terminal', 'error_handler'));
+				@set_error_handler(array($this, 'error'));
 				$runtime = getmicrotime();
 				@$direct = call_user_func($this->terminals[$type], $code);
 				$runtime = rtrim(number_format(getmicrotime() - $runtime, 15, '.', ''), 0);
@@ -447,7 +447,7 @@ EOF;
 	 * Error handler
 	 */
 	
-	static public function error_handler($n, $str, $file, $line) {
+	public function error($type, $message, $file=NULL, $line=NULL) {
 		
 		$error = array(
 			E_WARNING => 'Warning',
@@ -457,8 +457,8 @@ EOF;
 			E_USER_NOTICE => 'Notice'
 		);
 		
-		if(isset($error[$n])) {
-			rah_terminal::get()->error[] = $error[$n].': '.$str;
+		if(isset($error[$type])) {
+			$this->error[] = $error[$type].': '.$message;
 		}
 		
 		return true;
