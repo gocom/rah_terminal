@@ -1,0 +1,9 @@
+h1. Markdown module for rah_terminal
+
+p. The module generates and prints out HTML markup from given Markdown syntax. Uses and requires "PHP Markdown":https://github.com/michelf/php-markdown/ library.
+
+p. To configure PHP Markdown, download @markdown.php@ and upload it to your server. Then to tell rah_terminal and Textpattern markdown.php's location, add a line to Textpattern's configuration file, /textpattern/config.php.
+
+bc. define('rah_terminal__markdown', '/absolute/path/to/markdown.php');
+
+p. The constant @rah_terminal__markdown@ should contain an absolute path to markdown.php file.

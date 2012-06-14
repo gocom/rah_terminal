@@ -2,9 +2,11 @@ h1. Modules for rah_terminal
 
 p. This directory contains collection of optional modules for rah_terminal. These modules add new terminal options to rah_terminal. All included modules can be installed as normal Textpattern plugins. Easiest way to do so, is to set up a "plugin cache directory,":http://textpattern.net/wiki/index.php?title=Advanced_Preferences#Plugin_cache_directory_path and place any of the PHP files in it. Textpattern loads the files automatically and most of the work is already done.
 
+p. These modules can also be compiled as Textpattern's installable plugin packages using "MassPlugCompiler/rah_plugcompiler":https://github.com/gocom/MassPlugCompiler.
+
 p. Modules included in the directory are as follows.
 
-h2. markdown.php
+h2. markdown
 
 p. The module generates and prints out HTML markup from given Markdown syntax. Uses and requires "PHP Markdown":https://github.com/michelf/php-markdown/ library.
 
@@ -14,10 +16,10 @@ bc. define('rah_terminal__markdown', '/absolute/path/to/markdown.php');
 
 p. The constant @rah_terminal__markdown@ should contain an absolute path to markdown.php file.
 
-h2. textile.php
+h2. textile
 
 p. Generates and prints out HTML markup from given Textile markup. Uses the Textile class included with your Textpattern installation.
 
-h2. txpmarkup.php
+h2. txpmarkup
 
 p. Parses and prints out results of given Textpattern's @<txp:tag />@ markup.
