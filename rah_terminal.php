@@ -445,9 +445,11 @@ EOF;
 	
 	/**
 	 * Error handler
+	 * @param int $type
+	 * @param string $message
 	 */
 	
-	public function error($type, $message, $file=NULL, $line=NULL) {
+	public function error($type, $message) {
 		
 		$error = array(
 			E_WARNING => 'Warning',
