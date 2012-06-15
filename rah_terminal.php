@@ -372,12 +372,12 @@ class rah_terminal {
 		
 		if($q === false) {
 			$this->error = array();
-			trigger_error(mysql_error() . ' ('.mysql_errno().')', E_USER_ERROR);
+			trigger_error(mysql_error($DB->link) . ' ('.mysql_errno($DB->link).')', E_USER_ERROR);
 			return $q;
 		}
 		
 		else {
-			$this->notes[] = gTxt('rah_terminal_rows_affected', array('{count}' => mysql_affected_rows()));
+			$this->notes[] = gTxt('rah_terminal_rows_affected', array('{count}' => mysql_affected_rows($DB->link)));
 		}
 		
 		if(is_resource($q)) {
