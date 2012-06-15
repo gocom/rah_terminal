@@ -1,6 +1,6 @@
 <manifest>
 
-	<name>rah_terminal__textile</name>
+	<name>rah_terminal__markdown</name>
 	<description>Markdown module for rah_terminal</description>
 	
 	<version>0.1</version>
