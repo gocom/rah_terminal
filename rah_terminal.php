@@ -39,7 +39,7 @@ class rah_terminal {
 	 * @var array Captured error messages
 	 */
 
-	public $error = array();
+	private $error = array();
 
 	/**
 	 * @var array Terminal callbacks
@@ -59,21 +59,18 @@ class rah_terminal {
 	
 	/**
 	 * @var array Diagnostics notes. Added to result messages notes
-	 * @todo public method, make private
 	 */
 	
 	public $notes = array();
 	
 	/**
 	 * @var string User-stamp. Defaults to PHP process owner
-	 * @todo public method, make private
 	 */
 	
 	public $userstamp;
 	
 	/**
 	 * @var string Last result's returned variable type
-	 * @todo public method, make private
 	 */
 	
 	public $type;
