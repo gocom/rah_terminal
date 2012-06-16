@@ -88,13 +88,12 @@ class rah_terminal {
 	
 	/**
 	 * Gets an instance
-	 * @param bool $new
 	 * @return obj
 	 */
 	
-	static public function get($new=false) {
+	static public function get() {
 		
-		if($new || !self::$instance) {
+		if(!self::$instance) {
 			self::$instance = new rah_terminal();
 		}
 		

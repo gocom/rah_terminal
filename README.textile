@@ -15,7 +15,7 @@ p. See "Extending":https://github.com/gocom/rah_terminal/tree/master/extending d
 
 h3. rah_terminal::get() - Gets an instance of rah_terminal class
 
-bc. object rah_terminal::get(bool $new);
+bc. object rah_terminal::get();
 
 p. @get()@ is your standard factory method, following a loose singleton pattern. It returns an instance of the rah_terminal class. When creating an object, always use @get()@ instead of creating new instance yourself.
 
