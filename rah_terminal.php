@@ -114,7 +114,7 @@ class rah_terminal {
 	
 	public function __construct() {
 	
-		global $txp_user, $siteurl;
+		global $txp_user;
 	
 		$this
 			->add_terminal('php', gTxt('rah_terminal_php'), array($this, 'process_php'))
