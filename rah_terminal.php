@@ -24,7 +24,6 @@
 		register_tab('extensions', 'rah_terminal', gTxt('rah_terminal'));
 		register_callback(array('rah_terminal', 'panes'), 'rah_terminal');
 		register_callback(array('rah_terminal', 'head'), 'admin_side', 'head_end');
-		register_callback(array('rah_terminal', 'uninstall'), 'plugin_lifecycle.rah_terminal', 'deleted');
 	}
 
 class rah_terminal {
@@ -74,17 +73,6 @@ class rah_terminal {
 	 */
 	
 	public $type;
-
-	/**
-	 * Un-installer
-	 */
-
-	static public function uninstall() {
-		safe_delete(
-			'txp_prefs',
-			"name LIKE 'rah\_terminal\_%'"
-		);
-	}
 	
 	/**
 	 * Gets an instance
