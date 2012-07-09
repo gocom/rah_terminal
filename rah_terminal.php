@@ -291,7 +291,6 @@ class rah_terminal {
 		}
 		
 		send_script_response(implode(n, $js) . $theme->announce_async($msg));
-		die;
 	}
 	
 	/**
