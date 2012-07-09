@@ -181,10 +181,10 @@ class rah_terminal {
 	 * The pane
 	 */
 
-	public function form() {
+	public function form($message='') {
 		global $event;
 		
-		pagetop(gTxt('rah_terminal'));
+		pagetop(gTxt('rah_terminal'), $message);
 		
 		echo
 			'<form method="post" action="index.php" id="rah_terminal_container" class="txp-container">'.n.
@@ -193,7 +193,7 @@ class rah_terminal {
 			tInput().n.
 			'	<p>'.selectInput('type', $this->terminal_labels, get_pref('rah_terminal_last_type')).'</p>'.n.
 			'	<p>'.n.
-			'		<textarea class="code" name="code" rows="12" cols="20"></textarea>'.n.
+			'		<textarea class="code" name="code" rows="12" cols="20">'.txpspecialchars(ps('code')).'</textarea>'.n.
 			'	</p>'.n.
 			'	<p>'.n.
 			'		<input type="submit" value="'.gTxt('rah_terminal_run').'" class="publish" />'.n.
@@ -207,7 +207,7 @@ class rah_terminal {
 	
 	public function execute() {
 		
-		global $theme;
+		global $theme, $app_mode;
 		
 		extract(psa(array(
 			'type',
@@ -287,10 +287,16 @@ class rah_terminal {
 					'<p class="rah_terminal_note">'.$notes.'</p>'.
 				'</div>';
 			
-			$js[] = "$('#rah_terminal_container input.publish').parent().after('".escape_js($code)."');";
+			$js[] = "$('#rah_terminal_container').after('".escape_js($code)."');";
 		}
 		
-		send_script_response(implode(n, $js) . $theme->announce_async($msg));
+		if($app_mode == 'async') {
+			send_script_response(implode(n, $js) . $theme->announce_async($msg));
+			return;
+		}
+		
+		$this->form($msg);
+		echo $code;
 	}
 	
 	/**
