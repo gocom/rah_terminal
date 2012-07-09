@@ -398,9 +398,6 @@ class rah_terminal {
 		
 		echo <<<EOF
 			<style type="text/css">
-				#rah_terminal_container textarea {
-					width: 100%;
-				}
 				.rah_terminal_result_close {
 					float: right;
 				}
