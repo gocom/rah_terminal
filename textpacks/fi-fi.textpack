@@ -1,0 +1,18 @@
+#@admin
+#@language
+rah_terminal => Terminaali
+rah_terminal_php => PHP
+rah_terminal_sql => SQL
+rah_terminal_exec => Shell
+rah_terminal_run => Suorita
+rah_terminal_success => Koodi suoritettu.
+rah_terminal_fatal_error => Koodi päätyi mahdolliseen FATAL-virheeseen.
+rah_terminal_blackhole => Koodi ei antanut vastausta. Jos odottamatonta, syynä saattaa olla syntaksi virhe.
+rah_terminal_unknown_type => Tuntematon terminaalivirhe. Ole hyvä ja yritä uudelleen.
+rah_terminal_code_required => Koodi-kenttä tulee täyttää.
+rah_terminal_error => Koodi suoritettu, mutta tuotti virheitä.
+rah_terminal_close => Sulje
+rah_terminal_timestamp => %H:%M:%S
+rah_terminal_notes => Suoritettu <strong>{runtime}</strong> sekunnissa, palautti <strong>{type}</strong>. {notes}
+rah_terminal_said_by => {time} käyttäjänä {user}
+rah_terminal_rows_affected => Vaikutti yhteensä {count} riviin.
