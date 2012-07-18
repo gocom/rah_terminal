@@ -179,6 +179,7 @@ class rah_terminal {
 
 	/**
 	 * The pane
+	 * @param string $message
 	 */
 
 	public function form($message='') {
@@ -187,6 +188,7 @@ class rah_terminal {
 		pagetop(gTxt('rah_terminal'), $message);
 		
 		echo
+			'<h1 class="txp-heading">'.gTxt('rah_terminal').'</h1>'.n.
 			'<form method="post" action="index.php" id="rah_terminal_container" class="txp-container">'.n.
 			eInput($event).
 			sInput('execute').
@@ -405,7 +407,6 @@ class rah_terminal {
 			<script type="text/javascript">
 				<!--
 				$(document).ready(function(){
-					
 					$('form#rah_terminal_container').txpAsyncForm({
 						error : function() {
 							$.globalEval('{$error}');
@@ -422,7 +423,6 @@ class rah_terminal {
 						e.preventDefault();
 						$(this).parents('.rah_terminal_result').remove();
 					});
-					
 				});
 				//-->
 			</script>
