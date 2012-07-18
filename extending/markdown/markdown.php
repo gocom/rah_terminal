@@ -17,7 +17,9 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-new rah_terminal__markdown();
+	if(defined('txpinterface')) {
+		new rah_terminal__markdown();
+	}
 
 class rah_terminal__markdown {
 
@@ -26,6 +28,14 @@ class rah_terminal__markdown {
 	 */
 
 	public function __construct() {
+		register_callback(array($this, 'register'), 'rah_terminal', '', 1);
+	}
+
+	/**
+	 * Registers a terminal option
+	 */
+
+	public function register() {
 		add_privs('rah_terminal.markdown', '1,2,3,4');
 		rah_terminal::get()->add_terminal('markdown', 'Markdown', array($this, 'process'));
 	}

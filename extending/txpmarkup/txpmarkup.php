@@ -14,7 +14,9 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-new rah_terminal__txpmarkup();
+	if(defined('txpinterface')) {
+		new rah_terminal__txpmarkup();
+	}
 
 class rah_terminal__txpmarkup {
 
@@ -23,6 +25,14 @@ class rah_terminal__txpmarkup {
 	 */
 
 	public function __construct() {
+		register_callback(array($this, 'register'), 'rah_terminal', '', 1);
+	}
+
+	/**
+	 * Registers a terminal option
+	 */
+
+	public function register() {
 		add_privs('rah_terminal.txpmarkup', '1,2');
 		rah_terminal::get()->add_terminal('txpmarkup', 'TXP Markup', array($this, 'process'));
 	}

@@ -14,7 +14,9 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-new rah_terminal__textile();
+	if(defined('txpinterface')) {
+		new rah_terminal__textile();
+	}
 
 class rah_terminal__textile {
 
@@ -23,6 +25,14 @@ class rah_terminal__textile {
 	 */
 
 	public function __construct() {
+		register_callback(array($this, 'register'), 'rah_terminal', '', 1);
+	}
+
+	/**
+	 * Register a terminal option
+	 */
+
+	public function register() {
 		add_privs('rah_terminal.textile', '1,2,3,4');
 		rah_terminal::get()->add_terminal('textile', 'Textile', array($this, 'process'));
 	}
