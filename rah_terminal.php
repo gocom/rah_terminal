@@ -14,17 +14,15 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-	if(@txpinterface == 'admin') {
-		add_privs('rah_terminal', '1');
-		add_privs('rah_terminal.php', '1');
-		add_privs('rah_terminal.sql', '1');
-		add_privs('rah_terminal.exec', '1');
-		add_privs('plugin_prefs.rah_terminal', '1');
-		register_callback(array('rah_terminal', 'prefs'), 'plugin_prefs.rah_terminal');
-		register_tab('extensions', 'rah_terminal', gTxt('rah_terminal'));
-		register_callback(array('rah_terminal', 'panes'), 'rah_terminal');
-		register_callback(array('rah_terminal', 'head'), 'admin_side', 'head_end');
-	}
+	add_privs('rah_terminal', '1');
+	add_privs('rah_terminal.php', '1');
+	add_privs('rah_terminal.sql', '1');
+	add_privs('rah_terminal.exec', '1');
+	add_privs('plugin_prefs.rah_terminal', '1');
+	register_callback(array('rah_terminal', 'prefs'), 'plugin_prefs.rah_terminal');
+	register_tab('extensions', 'rah_terminal', gTxt('rah_terminal'));
+	register_callback(array('rah_terminal', 'panes'), 'rah_terminal');
+	register_callback(array('rah_terminal', 'head'), 'admin_side', 'head_end');
 
 class rah_terminal {
 
