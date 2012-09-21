@@ -172,17 +172,14 @@ class rah_terminal {
 	
 	/**
 	 * Verifies user's terminal permissions
-	 * @return obj
 	 */
 	
-	public function verify_terminals() {
+	private function verify_terminals() {
 		foreach($this->terminals as $name => $callback) {
 			if(!has_privs('rah_terminal.'.$name) || !is_callable($callback)) {
 				unset($this->terminal_labels[$name], $this->terminals[$name]);
 			}
 		}
-		
-		return $this;
 	}
 
 	/**
