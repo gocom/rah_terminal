@@ -14,15 +14,7 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-	add_privs('rah_terminal', '1');
-	add_privs('rah_terminal.php', '1');
-	add_privs('rah_terminal.sql', '1');
-	add_privs('rah_terminal.exec', '1');
-	add_privs('plugin_prefs.rah_terminal', '1');
-	register_callback(array('rah_terminal', 'prefs'), 'plugin_prefs.rah_terminal');
-	register_tab('extensions', 'rah_terminal', gTxt('rah_terminal'));
-	register_callback(array('rah_terminal', 'panes'), 'rah_terminal');
-	register_callback(array('rah_terminal', 'head'), 'admin_side', 'head_end');
+	rah_terminal::get();
 
 class rah_terminal {
 
@@ -90,7 +82,7 @@ class rah_terminal {
 	 * Delivers panes
 	 */
 	
-	static public function panes() {
+	public function panes() {
 		require_privs('rah_terminal');
 		global $step;
 		
@@ -103,7 +95,9 @@ class rah_terminal {
 		if(!$step || !bouncer($step, $steps))
 			$step = 'form';
 		
-		rah_terminal::get()->verify_terminals()->$step();
+		$this->initialize();
+		$this->verify_terminals();
+		$this->$step();
 	}
 	
 	/**
@@ -111,6 +105,22 @@ class rah_terminal {
 	 */
 	
 	public function __construct() {
+		add_privs('rah_terminal', '1');
+		add_privs('rah_terminal.php', '1');
+		add_privs('rah_terminal.sql', '1');
+		add_privs('rah_terminal.exec', '1');
+		add_privs('plugin_prefs.rah_terminal', '1');
+		register_callback(array($this, 'prefs'), 'plugin_prefs.rah_terminal');
+		register_callback(array($this, 'panes'), 'rah_terminal');
+		register_callback(array($this, 'head'), 'admin_side', 'head_end');
+		register_tab('extensions', 'rah_terminal', gTxt('rah_terminal'));
+	}
+	
+	/**
+	 * Initializes
+	 */
+	
+	public function initialize() {
 	
 		global $txp_user;
 	
@@ -387,7 +397,7 @@ class rah_terminal {
 	 * Adds styles and JavaScript to the <head>
 	 */
 
-	static public function head() {
+	public function head() {
 		
 		global $event, $theme;
 		
@@ -454,7 +464,7 @@ EOF;
 	 * Redirects to the plugin's panel
 	 */
 
-	static public function prefs() {
+	public function prefs() {
 		header('Location: ?event=rah_terminal');
 		echo 
 			'<p>'.n.
