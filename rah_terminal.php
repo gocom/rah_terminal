@@ -92,8 +92,9 @@ class rah_terminal {
 				'execute' => true,
 			);
 		
-		if(!$step || !bouncer($step, $steps))
+		if(!$step || !bouncer($step, $steps)) {
 			$step = 'form';
+		}
 		
 		$this->initialize();
 		$this->verify_terminals();
@@ -398,8 +399,9 @@ class rah_terminal {
 		
 		global $event, $theme;
 		
-		if($event != 'rah_terminal')
+		if($event != 'rah_terminal') {
 			return;
+		}
 		
 		$error = escape_js($theme->announce_async(array(gTxt('rah_terminal_fatal_error'), E_ERROR)));
 		
