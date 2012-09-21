@@ -409,29 +409,30 @@ class rah_terminal {
 					float: right;
 				}
 			</style>
-			<script type="text/javascript">
-				<!--
-				$(document).ready(function(){
-					$('form#rah_terminal_container').txpAsyncForm({
-						error : function() {
-							$.globalEval('{$error}');
-						},
+EOF;
+
+		$js = <<<EOF
+			$(document).ready(function(){
+				$('form#rah_terminal_container').txpAsyncForm({
+					error : function() {
+						$.globalEval('{$error}');
+					},
 						
-						success : function(form, event, data) {
-							if($.trim(data) === '') {
-								$.globalEval('{$error}');
-							}
+					success : function(form, event, data) {
+						if($.trim(data) === '') {
+							$.globalEval('{$error}');
 						}
+					}
 					});
 					
-					$('.rah_terminal_result_close').live('click', function(e) {
-						e.preventDefault();
-						$(this).parents('.rah_terminal_result').remove();
-					});
+				$('.rah_terminal_result_close').live('click', function(e) {
+					e.preventDefault();
+					$(this).parents('.rah_terminal_result').remove();
 				});
-				//-->
-			</script>
+			});
 EOF;
+
+		echo script_js($js);
 	}
 	
 	/**
