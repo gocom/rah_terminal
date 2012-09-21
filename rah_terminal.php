@@ -424,9 +424,9 @@ EOF;
 							$.globalEval('{$error}');
 						}
 					}
-					});
-					
-				$('.rah_terminal_result_close').live('click', function(e) {
+				});
+				
+				$(document).on('click', '.rah_terminal_result_close', function(e) {
 					e.preventDefault();
 					$(this).parents('.rah_terminal_result').remove();
 				});
