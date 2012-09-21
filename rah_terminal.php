@@ -83,7 +83,6 @@ class rah_terminal {
 	 */
 	
 	public function panes() {
-		require_privs('rah_terminal');
 		global $step;
 		
 		$steps = 
