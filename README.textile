@@ -42,3 +42,9 @@ p. @$event@ is the name of the "event" which the access is allowed, and @$groups
 p. Rah_terminal's events are prefixed with @rah_terminal.@. And terminal event name would consist of the prefix, followed by the terminal options name, given with the @add_terminal()@ methods first parameter. For terminal option named as @abc_example@, add_privs line would look like following:
 
 bc. add_privs('rah_terminal.abc_example', '1,2,3,4');
+
+h2. Changelog
+
+h3. Version 0.1 - upcoming
+
+* Initial release.
