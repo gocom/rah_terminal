@@ -323,9 +323,7 @@ class rah_terminal {
 		}
 		
 		if(is_array($code)) {
-			ob_start();
-			@print_r($code);
-			return ob_get_clean();
+			return print_r($code, true);
 		}
 		
 		return getType($code);
