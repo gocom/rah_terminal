@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Rah_terminal plugin for Textpattern CMS
+ * Rah_terminal plugin for Textpattern CMS.
  *
- * @author Jukka Svahn
+ * @author    Jukka Svahn
  * @copyright (c) 2012 Jukka Svahn
- * @date 2012-
- * @license GNU GPLv2
- * @link https://github.com/gocom/rah_terminal
+ * @date      2012-
+ * @license   GNU GPLv2
+ * @link      https://github.com/gocom/rah_terminal
  *
  * Copyright (C) 2012 Jukka Svahn <http://rahforum.biz>
  * Licensed under GNU Genral Public License version 2
@@ -15,6 +15,10 @@
  */
 
 	rah_terminal::get();
+
+/**
+ * The plugin class.
+ */
 
 class rah_terminal {
 
