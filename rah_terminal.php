@@ -19,56 +19,69 @@
 class rah_terminal {
 
 	/**
-	 * @var object Stores instances
+	 * Stores instances.
+	 *
+	 * @var rah_terminal
 	 */
-	
+
 	static public $instance;
 
 	/**
-	 * @var array Captured error messages
+	 * Captured error messages.
+	 *
+	 * @var array
 	 */
 
 	private $error = array();
 
 	/**
-	 * @var array Terminal callbacks
+	 * Terminal callbacks.
+	 *
 	 * @access private
-	 * @see rah_terminal::add_terminal()
+	 * @see    rah_terminal::add_terminal()
 	 */
-	
+
 	private $terminals = array();
-	
+
 	/**
-	 * @var array Terminal labels
+	 * Terminal labels.
+	 *
 	 * @access private
-	 * @see rah_terminal::add_terminal()
+	 * @see    rah_terminal::add_terminal()
 	 */
-	
+
 	private $terminal_labels = array();
-	
+
 	/**
-	 * @var array Diagnostics notes. Added to result messages notes
+	 * Diagnostics notes. Attached to result messages.
+	 *
+	 * @var array 
 	 */
-	
+
 	public $notes = array();
-	
+
 	/**
-	 * @var string User-stamp. Defaults to PHP process owner
+	 * User-stamp. Defaults to PHP process owner.
+	 *
+	 * @var string 
 	 */
-	
+
 	public $userstamp;
-	
+
 	/**
-	 * @var string Last result's returned variable type
+	 * Last result's returned variable type.
+	 *
+	 * @var string 
 	 */
-	
+
 	public $type;
-	
+
 	/**
-	 * Gets an instance
+	 * Gets an instance.
+	 *
 	 * @return obj
 	 */
-	
+
 	static public function get() {
 		
 		if(!self::$instance) {
@@ -77,11 +90,11 @@ class rah_terminal {
 		
 		return self::$instance;
 	}
-	
+
 	/**
-	 * Delivers panes
+	 * Delivers panes.
 	 */
-	
+
 	public function panes() {
 		global $step;
 		
@@ -99,11 +112,11 @@ class rah_terminal {
 		$this->verify_terminals();
 		$this->$step();
 	}
-	
+
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
-	
+
 	public function __construct() {
 		add_privs('rah_terminal', '1');
 		add_privs('rah_terminal.php', '1');
@@ -115,11 +128,11 @@ class rah_terminal {
 		register_callback(array($this, 'head'), 'admin_side', 'head_end');
 		register_tab('extensions', 'rah_terminal', gTxt('rah_terminal'));
 	}
-	
+
 	/**
-	 * Initializes
+	 * Initializes.
 	 */
-	
+
 	public function initialize() {
 	
 		global $txp_user;
@@ -146,15 +159,16 @@ class rah_terminal {
 			$this->userstamp .= '@Textpattern';
 		}
 	}
-	
+
 	/**
-	 * Adds a terminal processor
-	 * @param string name
-	 * @param string|null $label
-	 * @param callback|null $callback
-	 * @retrun obj
+	 * Registers a terminal processor.
+	 *
+	 * @param  string        $name
+	 * @param  string|null   $label
+	 * @param  callback|null $callback
+	 * @return rah_terminal
 	 */
-	
+
 	public function add_terminal($name, $label, $callback=NULL) {
 		
 		if($label === NULL || $callback === NULL) {
@@ -169,11 +183,14 @@ class rah_terminal {
 		
 		return $this;
 	}
-	
+
 	/**
-	 * Verifies user's terminal permissions
+	 * Verifies user's terminal permissions.
+	 *
+	 * This method strips out terminal options which the current
+	 * user doesn't have privileges to.
 	 */
-	
+
 	private function verify_terminals() {
 		foreach($this->terminals as $name => $callback) {
 			if(!has_privs('rah_terminal.'.$name) || !is_callable($callback)) {
@@ -183,8 +200,11 @@ class rah_terminal {
 	}
 
 	/**
-	 * The pane
-	 * @param string $message
+	 * The main panel.
+	 *
+	 * Returns the main terminal form.
+	 *
+	 * @param string $message The activity message
 	 */
 
 	public function form($message='') {
@@ -207,11 +227,13 @@ class rah_terminal {
 			'	</p>'.n.
 			'</form>' .n;
 	}
-	
+
 	/**
-	 * Executes commands, content or code
+	 * Executes commands, content or code.
+	 *
+	 * Outputs results as an asynchronous response script.
 	 */
-	
+
 	public function execute() {
 		
 		global $theme, $app_mode;
@@ -305,13 +327,14 @@ class rah_terminal {
 		$this->form($msg);
 		echo $code;
 	}
-	
+
 	/**
-	 * Takes command's output and makes that into a safe string
-	 * @param mixed $code
-	 * @return string
+	 * Takes command's output and makes that into a safe, human-readable string.
+	 *
+	 * @param  mixed  $code The input
+	 * @return string The input in safe format
 	 */
-	
+
 	private function output($code) {
 	
 		if(is_bool($code)) {
@@ -328,20 +351,26 @@ class rah_terminal {
 		
 		return getType($code);
 	}
-	
+
 	/**
-	 * Evaluates PHP
-	 * @param string $php
-	 * @return mixed Returned value, NULL or FALSE
+	 * Evaluates PHP.
+	 *
+	 * This method handles 'php' terminal option.
+	 *
+	 * @param  string $php
+	 * @return mixed  Returned value, NULL or FALSE
 	 */
-	
+
 	private function process_php($php) {
 		return eval("echo ' '; {$php}");
 	}
-	
+
 	/**
-	 * Executes shell commands
-	 * @param string $cmd
+	 * Executes shell commands.
+	 *
+	 * This method handles 'shell' terminal option.
+	 *
+	 * @param  string $cmd
 	 * @return string Standard output
 	 */
 	
@@ -349,13 +378,14 @@ class rah_terminal {
 		system($cmd, $output);
 		return $output;
 	}
-	
+
 	/**
-	 * Executes a DB query
-	 * @param string $sql
+	 * Executes an SQL query.
+	 *
+	 * @param  string $sql The statement
 	 * @return mixed
 	 */
-	
+
 	private function process_sql($sql) {
 		global $DB;
 	
@@ -389,7 +419,7 @@ class rah_terminal {
 	}
 
 	/**
-	 * Adds styles and JavaScript to the <head>
+	 * Adds styles and JavaScript to the &lt;head&gt;.
 	 */
 
 	public function head() {
@@ -433,13 +463,15 @@ EOF;
 
 		echo script_js($js);
 	}
-	
+
 	/**
-	 * Error handler
-	 * @param int $type
-	 * @param string $message
+	 * Error handler for terminal options.
+	 *
+	 * @param  int    $type    The error type
+	 * @param  string $message The error message
+	 * @return bool   Returns TRUE
 	 */
-	
+
 	public function error($type, $message) {
 		
 		$error = array(
@@ -458,7 +490,9 @@ EOF;
 	}
 
 	/**
-	 * Redirects to the plugin's panel
+	 * Plugin's options page.
+	 *
+	 * Redirects to the plugin's panel.
 	 */
 
 	public function prefs() {
