@@ -213,7 +213,7 @@ class rah_terminal {
 	 *
 	 * Returns the main terminal form.
 	 *
-	 * @param string $message The activity message
+	 * @param string|array $message The activity message
 	 */
 
 	public function form($message = '')
