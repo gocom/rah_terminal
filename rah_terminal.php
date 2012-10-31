@@ -20,8 +20,8 @@
  * The plugin class.
  */
 
-class rah_terminal {
-
+class rah_terminal
+{
 	/**
 	 * Stores instances.
 	 *
