@@ -82,12 +82,13 @@ class rah_terminal {
 	 * @return obj
 	 */
 
-	static public function get() {
-		
-		if(!self::$instance) {
+	static public function get()
+	{
+		if (!self::$instance)
+		{
 			self::$instance = new rah_terminal();
 		}
-		
+
 		return self::$instance;
 	}
 
@@ -95,19 +96,20 @@ class rah_terminal {
 	 * Delivers panes.
 	 */
 
-	public function panes() {
+	public function panes()
+	{
 		global $step;
-		
-		$steps = 
-			array(
-				'form' => false,
-				'execute' => true,
-			);
-		
-		if(!$step || !bouncer($step, $steps)) {
+
+		$steps = array(
+			'form' => false,
+			'execute' => true,
+		);
+
+		if (!$step || !bouncer($step, $steps))
+		{
 			$step = 'form';
 		}
-		
+
 		$this->initialize();
 		$this->verify_terminals();
 		$this->$step();
@@ -117,7 +119,8 @@ class rah_terminal {
 	 * Constructor.
 	 */
 
-	public function __construct() {
+	public function __construct()
+	{
 		add_privs('rah_terminal', '1');
 		add_privs('rah_terminal.php', '1');
 		add_privs('rah_terminal.sql', '1');
@@ -133,29 +136,32 @@ class rah_terminal {
 	 * Initializes.
 	 */
 
-	public function initialize() {
-	
+	public function initialize()
+	{
 		global $txp_user;
-	
+
 		$this
 			->add_terminal('php', gTxt('rah_terminal_php'), array($this, 'process_php'))
 			->add_terminal('sql', gTxt('rah_terminal_sql'), array($this, 'process_sql'))
 			->add_terminal('exec', gTxt('rah_terminal_exec'), array($this, 'process_exec'));
-		
-		if(function_exists('posix_getpwuid')) {
+
+		if (function_exists('posix_getpwuid'))
+		{
 			$u = posix_getpwuid(posix_geteuid());
 			$this->userstamp = !empty($u['name']) ? $u['name'] : NULL;
 		}
-		
-		if(!$this->userstamp) {
+
+		if (!$this->userstamp)
+		{
 			$this->userstamp = $txp_user;
 		}
-		
-		if(is_callable('php_uname')) {
+
+		if (is_callable('php_uname'))
+		{
 			$this->userstamp .= '@' . php_uname('n');
 		}
-		
-		else {
+		else
+		{
 			$this->userstamp .= '@Textpattern';
 		}
 	}
@@ -169,18 +175,19 @@ class rah_terminal {
 	 * @return rah_terminal
 	 */
 
-	public function add_terminal($name, $label, $callback=NULL) {
-		
-		if($label === NULL || $callback === NULL) {
+	public function add_terminal($name, $label, $callback = null)
+	{
+		if ($label === null || $callback === null)
+		{
 			unset($this->terminal_labels[$name], $this->terminals[$name]);
 		}
-		
-		elseif(!in_array($label, $this->terminal_labels)) {
+		else if (!in_array($label, $this->terminal_labels))
+		{
 			$this->terminals[$name] = $callback;
 			$this->terminal_labels[$name] = $label;
 			asort($this->terminal_labels);
 		}
-		
+
 		return $this;
 	}
 
@@ -192,8 +199,10 @@ class rah_terminal {
 	 */
 
 	private function verify_terminals() {
-		foreach($this->terminals as $name => $callback) {
-			if(!has_privs('rah_terminal.'.$name) || !is_callable($callback)) {
+		foreach ($this->terminals as $name => $callback)
+		{
+			if (!has_privs('rah_terminal.'.$name) || !is_callable($callback))
+			{
 				unset($this->terminal_labels[$name], $this->terminals[$name]);
 			}
 		}
@@ -207,11 +216,12 @@ class rah_terminal {
 	 * @param string $message The activity message
 	 */
 
-	public function form($message='') {
+	public function form($message = '')
+	{
 		global $event;
-		
+
 		pagetop(gTxt('rah_terminal'), $message);
-		
+
 		echo
 			'<h1 class="txp-heading">'.gTxt('rah_terminal').'</h1>'.n.
 			'<form method="post" action="index.php" id="rah_terminal_container" class="txp-container">'.n.
@@ -234,10 +244,10 @@ class rah_terminal {
 	 * Outputs results as an asynchronous response script.
 	 */
 
-	public function execute() {
-		
+	public function execute()
+	{	
 		global $theme, $app_mode;
-		
+
 		extract(psa(array(
 			'type',
 			'code'
@@ -245,19 +255,23 @@ class rah_terminal {
 
 		$js = array();
 		$msg = gTxt('rah_terminal_success');
-		
-		if(!isset($this->terminals[$type])) {
+
+		if (!isset($this->terminals[$type]))
+		{
 			$msg = array(gTxt('rah_terminal_unknown_type'), E_WARNING);
 		}
-		
-		elseif(trim($code) === '') {
+
+		else if (trim($code) === '')
+		{
 			$msg = array(gTxt('rah_terminal_code_required'), E_WARNING);
 		}
-		
-		else {
+
+		else
+		{
 			set_pref('rah_terminal_last_type', $type, 'rah_terminal', PREF_HIDDEN, '', 0, PREF_PRIVATE);
-			
-			try {
+
+			try
+			{
 				ob_start();
 				@error_reporting(-1);
 				@set_error_handler(array($this, 'error'));
@@ -267,47 +281,53 @@ class rah_terminal {
 				restore_error_handler();
 				$buffer = ob_get_clean();
 			}
-			catch(exception $e) {
+			catch (exception $e)
+			{
 				$this->error[] = $e->getMessage();
 			}
-			
-			if($this->error) {
+
+			if ($this->error)
+			{
 				$msg = array(gTxt('rah_terminal_error'), E_ERROR);
 			}
-			
-			elseif($direct === false && $buffer === '') {
+
+			elseif ($direct === false && $buffer === '')
+			{
 				$msg = array(gTxt('rah_terminal_blackhole'), E_WARNING);
 			}
-			
-			if($buffer !== ' ' && $direct === NULL) {
+
+			if ($buffer !== ' ' && $direct === NULL)
+			{
 				$direct = trim($buffer);
 			}
-			
+
 			$stamp = gTxt('rah_terminal_said_by', array(
 				'{time}' => safe_strftime(gTxt('rah_terminal_timestamp')),
 				'{user}' => $this->userstamp,
 			));
-			
-			if($this->type === NULL) {
+
+			if ($this->type === NULL)
+			{
 				$this->type = gettype($direct);
 			}
-			
+
 			$notes = 
 				gTxt('rah_terminal_notes', array(
 					'{runtime}' => $runtime,
 					'{type}' => $this->type,
 					'{notes}' => implode(' ', $this->notes),
 				));
-			
+
 			$direct = htmlspecialchars($this->output($direct));
 			$errors = array();
-			
-			foreach($this->error as $error) {
+
+			foreach ($this->error as $error)
+			{
 				$errors[] = '<span>'.htmlspecialchars($error).'</span>';
 			}
-			
+
 			$errors = $errors ? '<p class="rah_terminal_errors error">' . implode('<br />', $errors) . '</p>' : '';
-			
+
 			$code = 
 				'<div class="rah_terminal_result">'.
 					'<p>'.$stamp.' <a class="rah_terminal_result_close" href="#">'.gTxt('rah_terminal_close').'</a></p>'.
@@ -318,12 +338,13 @@ class rah_terminal {
 			
 			$js[] = "$('#rah_terminal_container').after('".escape_js($code)."');";
 		}
-		
-		if($app_mode == 'async') {
+
+		if ($app_mode == 'async')
+		{
 			send_script_response(implode(n, $js) . $theme->announce_async($msg));
 			return;
 		}
-		
+
 		$this->form($msg);
 		echo $code;
 	}
@@ -335,20 +356,23 @@ class rah_terminal {
 	 * @return string The input in safe format
 	 */
 
-	private function output($code) {
-	
-		if(is_bool($code)) {
+	private function output($code)
+	{
+		if (is_bool($code))
+		{
 			return $code ? '(bool) true' : '(bool) false';
 		}
-	
-		if(is_scalar($code)) {
+
+		if (is_scalar($code))
+		{
 			return $code;
 		}
-		
-		if(is_array($code)) {
+
+		if (is_array($code))
+		{
 			return print_r($code, true);
 		}
-		
+
 		return getType($code);
 	}
 
@@ -361,7 +385,8 @@ class rah_terminal {
 	 * @return mixed  Returned value, NULL or FALSE
 	 */
 
-	private function process_php($php) {
+	private function process_php($php)
+	{
 		return eval("echo ' '; {$php}");
 	}
 
@@ -373,8 +398,9 @@ class rah_terminal {
 	 * @param  string $cmd
 	 * @return string Standard output
 	 */
-	
-	private function process_exec($cmd) {
+
+	private function process_exec($cmd)
+	{
 		system($cmd, $output);
 		return $output;
 	}
@@ -386,35 +412,38 @@ class rah_terminal {
 	 * @return mixed
 	 */
 
-	private function process_sql($sql) {
+	private function process_sql($sql)
+	{
 		global $DB;
-	
+
 		$q = safe_query($sql);
-		
+
 		$this->type = gettype($q);
 		$this->userstamp = $DB->user . '@' . $DB->host;
-		
-		if($q === false) {
+
+		if ($q === false)
+		{
 			$this->error = array();
 			trigger_error(mysql_error($DB->link) . ' ('.mysql_errno($DB->link).')', E_USER_ERROR);
 			return $q;
 		}
-		
-		else {
+		else
+		{
 			$this->notes[] = gTxt('rah_terminal_rows_affected', array('{count}' => mysql_affected_rows($DB->link)));
 		}
 		
-		if(is_resource($q)) {
-			
+		if (is_resource($q))
+		{
 			$out = array();
-			
-			while($r = mysql_fetch_assoc($q)) {
+
+			while($r = mysql_fetch_assoc($q))
+			{
 				$out[] = $r;
 			}
-			
+
 			return $out;
 		}
-		
+
 		return $q;
 	}
 
@@ -422,16 +451,17 @@ class rah_terminal {
 	 * Adds styles and JavaScript to the &lt;head&gt;.
 	 */
 
-	public function head() {
-		
+	public function head()
+	{
 		global $event, $theme;
-		
-		if($event != 'rah_terminal') {
+
+		if ($event != 'rah_terminal')
+		{
 			return;
 		}
-		
+
 		$error = escape_js($theme->announce_async(array(gTxt('rah_terminal_fatal_error'), E_ERROR)));
-		
+
 		echo <<<EOF
 			<style type="text/css">
 				.rah_terminal_result_close {
@@ -446,14 +476,13 @@ EOF;
 					error : function() {
 						$.globalEval('{$error}');
 					},
-						
 					success : function(form, event, data) {
 						if($.trim(data) === '') {
 							$.globalEval('{$error}');
 						}
 					}
 				});
-				
+
 				$(document).on('click', '.rah_terminal_result_close', function(e) {
 					e.preventDefault();
 					$(this).parents('.rah_terminal_result').remove();
@@ -472,8 +501,8 @@ EOF;
 	 * @return bool   Returns TRUE
 	 */
 
-	public function error($type, $message) {
-		
+	public function error($type, $message)
+	{	
 		$error = array(
 			E_WARNING => 'Warning',
 			E_NOTICE => 'Notice',
@@ -481,11 +510,12 @@ EOF;
 			E_USER_WARNING => 'Warning',
 			E_USER_NOTICE => 'Notice'
 		);
-		
-		if(isset($error[$type])) {
+
+		if (isset($error[$type]))
+		{
 			$this->error[] = $error[$type].': '.$message;
 		}
-		
+
 		return true;
 	}
 
@@ -495,12 +525,11 @@ EOF;
 	 * Redirects to the plugin's panel.
 	 */
 
-	public function prefs() {
+	public function prefs()
+	{
 		header('Location: ?event=rah_terminal');
-		echo 
-			'<p>'.n.
-			'	<a href="?event=rah_terminal">'.gTxt('continue').'</a>'.n.
-			'</p>';
+		echo '<p><a href="?event=rah_terminal">'.gTxt('continue').'</a></p>';
 	}
 }
+
 ?>
