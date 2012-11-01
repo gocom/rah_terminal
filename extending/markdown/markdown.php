@@ -17,10 +17,7 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-	if (defined('txpinterface'))
-	{
-		new rah_terminal__markdown();
-	}
+	new rah_terminal__markdown();
 
 /**
  * Markdown module.
