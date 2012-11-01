@@ -14,9 +14,7 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-	if(defined('txpinterface')) {
-		new rah_terminal__textile();
-	}
+	new rah_terminal__textile();
 
 class rah_terminal__textile
 {
