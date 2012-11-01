@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Generates HTML markup from supplied Markdown markup
+ * Generates HTML markup from supplied Markdown markup.
  *
- * @package rah_terminal
- * @author Jukka Svahn
+ * @package   rah_terminal
+ * @author    Jukka Svahn
  * @copyright (c) 2012 Jukka Svahn
- * @date 2012-
- * @license GNU GPLv2
+ * @date      2012-
+ * @license   GNU GPLv2
  *
  * Requires PHP Markdown
  * http://michelf.com/projects/php-markdown/
  *
- * Copyright (C) 2012 Jukka Svahn <http://rahforum.biz>
+ * Copyright (C) 2012 Jukka Svahn http://rahforum.biz
  * Licensed under GNU Genral Public License version 2
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -45,7 +45,7 @@ class rah_terminal__markdown
 	}
 
 	/**
-	 * Process Markdown and renders HTML.
+	 * Processes Markdown and renders HTML.
 	 *
 	 * @param  string $markup Markdown markup
 	 * @return string HTML

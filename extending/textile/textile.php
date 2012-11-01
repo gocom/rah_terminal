@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Generates HTML markup from supplied Textile markup
+ * Generates HTML markup from supplied Textile markup.
  *
- * @package rah_terminal
- * @author Jukka Svahn
+ * @package   rah_terminal
+ * @author    Jukka Svahn
  * @copyright (c) 2012 Jukka Svahn
- * @date 2012-
- * @license GNU GPLv2
+ * @date      2012-
+ * @license   GNU GPLv2
  *
- * Copyright (C) 2012 Jukka Svahn <http://rahforum.biz>
+ * Copyright (C) 2012 Jukka Svahn http://rahforum.biz
  * Licensed under GNU Genral Public License version 2
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -18,32 +18,36 @@
 		new rah_terminal__textile();
 	}
 
-class rah_terminal__textile {
-
+class rah_terminal__textile
+{
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 
-	public function __construct() {
+	public function __construct()
+	{
 		register_callback(array($this, 'register'), 'rah_terminal', '', 1);
 	}
 
 	/**
-	 * Register a terminal option
+	 * Register a terminal option.
 	 */
 
-	public function register() {
+	public function register()
+	{
 		add_privs('rah_terminal.textile', '1,2,3,4');
 		rah_terminal::get()->add_terminal('textile', 'Textile', array($this, 'process'));
 	}
 
 	/**
-	 * Process Textile
-	 * @param string $markup Textile Markup passed to the function.
+	 * Processes Textile markup and renders HTML.
+	 *
+	 * @param  string $markup Textile markup
 	 * @return string HTML
 	 */
 
-	public function process($markup) {
+	public function process($markup)
+	{
 		include_once txpath.'/lib/classTextile.php';
 		$textile = new Textile(get_pref('doctype'));
 		return $textile->TextileThis($markup);
