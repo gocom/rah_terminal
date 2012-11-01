@@ -13,6 +13,6 @@ rah_terminal_code_required => No code supplied.
 rah_terminal_error => Code executed with errors.
 rah_terminal_close => Close
 rah_terminal_timestamp => %H:%M:%S
-rah_terminal_notes => Executed in <strong>{runtime}</strong> seconds, returned <strong>{type}</strong>. {notes}
+rah_terminal_notes => Executed in <strong>{runtime}</strong> seconds, used <strong>{memory}</strong> bytes of memory, returned <strong>{type}</strong>. {notes}
 rah_terminal_said_by => {time} as {user}
 rah_terminal_rows_affected => Total of {count} rows affected.

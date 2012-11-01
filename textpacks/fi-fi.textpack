@@ -13,6 +13,6 @@ rah_terminal_code_required => Koodi-kenttä tulee täyttää.
 rah_terminal_error => Koodi suoritettu, mutta tuotti virheitä.
 rah_terminal_close => Sulje
 rah_terminal_timestamp => %H:%M:%S
-rah_terminal_notes => Suoritettu <strong>{runtime}</strong> sekunnissa, palautti <strong>{type}</strong>. {notes}
+rah_terminal_notes => Suoritettu <strong>{runtime}</strong> sekunnissa, käyttäen <strong>{memory}</strong> tavua muistia, palautti <strong>{type}</strong>. {notes}
 rah_terminal_said_by => {time} käyttäjänä {user}
 rah_terminal_rows_affected => Vaikutti yhteensä {count} riviin.

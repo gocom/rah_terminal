@@ -279,9 +279,12 @@ class rah_terminal
 				ob_start();
 				@error_reporting(-1);
 				@set_error_handler(array($this, 'error'));
+				$starting_memory = memory_get_usage();
 				$runtime = getmicrotime();
 				@$direct = call_user_func($this->terminals[$type], $code);
 				$runtime = rtrim(number_format(getmicrotime() - $runtime, 15, '.', ''), 0);
+				$total_memory = memory_get_usage();
+				$memory = max(0, $total_memory - $starting_memory);
 				restore_error_handler();
 				$buffer = ob_get_clean();
 			}
@@ -320,6 +323,7 @@ class rah_terminal
 					'{runtime}' => $runtime,
 					'{type}' => $this->type,
 					'{notes}' => implode(' ', $this->notes),
+					'{memory}' => $memory,
 				));
 
 			$direct = htmlspecialchars($this->output($direct));
