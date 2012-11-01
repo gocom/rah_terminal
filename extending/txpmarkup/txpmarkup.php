@@ -16,6 +16,10 @@
 
 	new rah_terminal__txpmarkup();
 
+/**
+ * Texttpattern markup module.
+ */
+
 class rah_terminal__txpmarkup
 {
 	/**

@@ -16,6 +16,10 @@
 
 	new rah_terminal__textile();
 
+/**
+ * Textile module.
+ */
+
 class rah_terminal__textile
 {
 	/**
