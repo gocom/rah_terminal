@@ -475,6 +475,10 @@ class rah_terminal
 				.rah_terminal_result_close {
 					float: right;
 				}
+				.rah_terminal_result pre {
+					max-height: 9em;
+					overflow-y: auto;
+				}
 			</style>
 EOF;
 
