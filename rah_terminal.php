@@ -81,6 +81,16 @@ class rah_terminal
 	public $type;
 
 	/**
+	 * Post-event callback hook.
+	 *
+	 * The callback handler should return JavaScript.
+	 *
+	 * @var callback
+	 */
+
+	public $post_hook;
+
+	/**
 	 * Gets an instance.
 	 *
 	 * @return obj
@@ -325,6 +335,11 @@ class rah_terminal
 					'{notes}' => implode(' ', $this->notes),
 					'{memory}' => $memory,
 				));
+
+			if ($this->post_hook)
+			{
+				$js[] = call_user_func($this->post_hook, $direct);
+			}
 
 			$direct = htmlspecialchars($this->output($direct));
 			$errors = array();
