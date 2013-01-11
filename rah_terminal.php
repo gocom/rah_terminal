@@ -566,11 +566,11 @@ EOF;
 	public function error($type, $message)
 	{	
 		$error = array(
-			E_WARNING => 'Warning',
-			E_NOTICE => 'Notice',
-			E_USER_ERROR => 'Error',
+			E_WARNING      => 'Warning',
+			E_NOTICE       => 'Notice',
+			E_USER_ERROR   => 'Error',
 			E_USER_WARNING => 'Warning',
-			E_USER_NOTICE => 'Notice'
+			E_USER_NOTICE  => 'Notice'
 		);
 
 		if (isset($error[$type]))
