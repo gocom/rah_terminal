@@ -593,5 +593,3 @@ EOF;
 		echo '<p><a href="?event=rah_terminal">'.gTxt('continue').'</a></p>';
 	}
 }
-
-?>

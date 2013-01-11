@@ -69,5 +69,3 @@ class rah_terminal__markdown
 		return Markdown($markup);
 	}
 }
-
-?>

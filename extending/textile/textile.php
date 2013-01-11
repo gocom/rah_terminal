@@ -55,5 +55,3 @@ class rah_terminal__textile
 		return $textile->TextileThis($markup);
 	}
 }
-
-?>

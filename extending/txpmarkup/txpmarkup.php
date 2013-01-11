@@ -58,5 +58,3 @@ class rah_terminal__txpmarkup
 		return parse($markup);
 	}
 }
-
-?>
