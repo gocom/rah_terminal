@@ -2,6 +2,7 @@
 #@language
 rah_terminal => Terminaali
 rah_terminal_php => PHP
+rah_terminal_js => JavaScript
 rah_terminal_sql => SQL
 rah_terminal_exec => Shell
 rah_terminal_run => Suorita
