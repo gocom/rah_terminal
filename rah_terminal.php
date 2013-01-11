@@ -139,6 +139,7 @@ class rah_terminal
 		add_privs('rah_terminal.php', '1');
 		add_privs('rah_terminal.sql', '1');
 		add_privs('rah_terminal.exec', '1');
+		add_privs('rah_terminal.js', '1');
 		add_privs('plugin_prefs.rah_terminal', '1');
 		register_callback(array($this, 'prefs'), 'plugin_prefs.rah_terminal');
 		register_callback(array($this, 'panes'), 'rah_terminal');
@@ -157,7 +158,8 @@ class rah_terminal
 		$this
 			->add_terminal('php', gTxt('rah_terminal_php'), array($this, 'process_php'))
 			->add_terminal('sql', gTxt('rah_terminal_sql'), array($this, 'process_sql'))
-			->add_terminal('exec', gTxt('rah_terminal_exec'), array($this, 'process_exec'));
+			->add_terminal('exec', gTxt('rah_terminal_exec'), array($this, 'process_exec'))
+			->add_terminal('js', gTxt('rah_terminal_js'), array($this, 'process_js'));
 
 		if (function_exists('posix_getpwuid'))
 		{
@@ -468,6 +470,39 @@ class rah_terminal
 		}
 
 		return $q;
+	}
+
+    /**
+	 * Process JavaScript.
+	 *
+	 * @param  string $js The JavaScript input
+	 * @return string
+	 */
+
+	public function process_js($js)
+	{
+		$this->post_hook = array($this, 'post_js');
+		return $js;
+	}
+
+	/**
+	 * Processes JavaScript.
+	 *
+	 * @param string
+	 */
+
+	public function post_js($js)
+	{
+		return <<<EOF
+			(function(){
+				var r = (function ()
+				{
+					{$js}
+				})();
+
+				textpattern.Console.log(r);
+			})();
+EOF;
 	}
 
 	/**
