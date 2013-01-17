@@ -2,7 +2,7 @@
 	"name"        : "rah_terminal",
 	"description" : "Terminal",
 	"version"     : "0.1",
-	"type"        : 5,
+	"type"        : 4,
 	"author"      : "Jukka Svahn",
 	"author_uri"  : "http://rahforum.biz",
 	"order"       : 5,
