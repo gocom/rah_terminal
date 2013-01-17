@@ -1,0 +1,11 @@
+{
+	"name"        : "rah_terminal",
+	"description" : "Terminal",
+	"version"     : "0.1",
+	"type"        : 5,
+	"author"      : "Jukka Svahn",
+	"author_uri"  : "http://rahforum.biz",
+	"order"       : 5,
+	"flags"       : 1,
+	"help"        : {"file" : "./README.textile"}
+}
