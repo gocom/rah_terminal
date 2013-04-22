@@ -6,17 +6,17 @@ h2. Requirements
 
 * Textpattern 4.5.0 or newer.
 
-h2. Extending
+h2. Modules
 
-p. The plugin comes small API which can be used to add additional terminal types to plugin. By default the plugin comes with options PHP, SQL and Shell, but that can be extended to include a _Textile Generator_ among other things. These added terminal types act same as the built in ones do. A callback function is registered, and everything that the callback functions prints or returns to global scope, will be shown to the user. Thrown exceptions and errors are captured too.
-
-h3. Modules
-
-p. The following existing modules are available.
+p. Modules can be used to extend rah_terminal's functionality, adding additional terminal types. The following modules are available.
 
 * "Markdown":https://github.com/gocom/rah_terminal__markdown
 * "Textile":https://github.com/gocom/rah_terminal__textile
 * "Texpattern template language":https://github.com/gocom/rah_terminal__txpmarkup
+
+h2. Extending
+
+p. The plugin comes small API which can be used to add additional terminal types to plugin. By default the plugin comes with options PHP, SQL and Shell, but that can be extended to include a _Textile Generator_ among other things. These added terminal types act same as the built in ones do. A callback function is registered, and everything that the callback functions prints or returns to global scope, will be shown to the user. Thrown exceptions and errors are captured too.
 
 h3. API
 
