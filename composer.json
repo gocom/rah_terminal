@@ -1,0 +1,24 @@
+{
+    "name": "rah/rah_terminal",
+    "description": "Web terminal plugin for Textpattern",
+    "keywords": ["textpattern"],
+    "homepage": "https://github.com/gocom/rah_terminal",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Jukka Svahn",
+            "homepage": "http://rahforum.biz",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/gocom/rah_terminal/issues",
+        "source": "https://github.com/gocom/rah_terminal"
+    },
+    "autoload": {
+        "files": ["rah_terminal.php"]
+    },
+    "require": {
+        "php": ">=5.2.0"
+    }
+}
