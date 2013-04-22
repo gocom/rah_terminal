@@ -10,15 +10,23 @@ h2. Extending
 
 p. The plugin comes small API which can be used to add additional terminal types to plugin. By default the plugin comes with options PHP, SQL and Shell, but that can be extended to include a _Textile Generator_ among other things. These added terminal types act same as the built in ones do. A callback function is registered, and everything that the callback functions prints or returns to global scope, will be shown to the user. Thrown exceptions and errors are captured too.
 
-p. See "Extending":https://github.com/gocom/rah_terminal/tree/master/extending directory for existing modules, and examples.
+h3. Modules
 
-h3. rah_terminal::get() - Gets an instance of rah_terminal class
+p. The following existing modules are available.
+
+* "Markdown":https://github.com/gocom/rah_terminal__markdown
+* "Textile":https://github.com/gocom/rah_terminal__textile
+* "Texpattern template language":https://github.com/gocom/rah_terminal__txpmarkup
+
+h3. API
+
+h4. rah_terminal::get() - Gets an instance of rah_terminal class
 
 bc. object rah_terminal::get();
 
 p. @get()@ is your standard factory method, following a loose singleton pattern. It returns an instance of the rah_terminal class. When creating an object, always use @get()@ instead of creating new instance yourself.
 
-h3. rah_terminal::add_terminal() - Adds a new terminal option
+h4. rah_terminal::add_terminal() - Adds a new terminal option
 
 bc. object rah_terminal::add_terminal( string $name, string|null $label, callback $callback );
 
@@ -31,7 +39,7 @@ p. To use @add_terminal()@ you would first get an instance of rah_terminal using
 bc. rah_terminal::get()
 	->add_terminal('abc_example', gTxt('abc_example_label'), 'abc_example_function');
 
-h3. add_privs() - Grants user-groups privileges to a terminal option
+h4. add_privs() - Grants user-groups privileges to a terminal option
 
 bc. mixed add_privs(string $event, string $groups);
 
