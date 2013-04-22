@@ -16,7 +16,7 @@
         "source": "https://github.com/gocom/rah_terminal"
     },
     "autoload": {
-        "files": ["rah_terminal.php"]
+        "files": []
     },
     "require": {
         "php": ">=5.2.0"
