@@ -45,6 +45,6 @@ bc. add_privs('rah_terminal.abc_example', '1,2,3,4');
 
 h2. Changelog
 
-h3. Version 0.1 - upcoming
+h3. Version 0.1.0 - upcoming
 
 * Initial release.
