@@ -4,6 +4,8 @@ p. "Twitter":http://twitter.com/gocom | "GitHub":https://github.com/gocom/rah_te
 
 p. Rah_terminal is a plugin for "Textpattern CMS.":http:://textpattern.com It provides a terminal emulator interface for executing external applications, commands and evaluating PHP code, right from Textpattern's admin-panel.
 
+p. "Download v0.1.0":http://rahforum.biz/d/rah_terminal_v0.1.0_zip.txt
+
 h2. Toolshed notice
 
 p. This is a toolshed project. Experimental and not part of the main supported product line of Rah. Not yet at least. Please use at your own risk.
@@ -59,6 +61,6 @@ bc. add_privs('rah_terminal.abc_example', '1,2,3,4');
 
 h2. Changelog
 
-h3. Version 0.1.0 - upcoming
+h3. Version 0.1.0 - 2013/04/24 - "Download":http://rahforum.biz/d/rah_terminal_v0.1.0_zip.txt
 
 * Initial release.
