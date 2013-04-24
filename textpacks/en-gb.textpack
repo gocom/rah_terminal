@@ -1,5 +1,4 @@
 #@admin
-#Default language, en-us, en-gb
 rah_terminal => Terminal
 rah_terminal_php => PHP
 rah_terminal_js => JavaScript
