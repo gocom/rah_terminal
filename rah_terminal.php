@@ -14,12 +14,6 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-	rah_terminal::get();
-
-/**
- * The plugin class.
- */
-
 class rah_terminal
 {
 	/**
@@ -593,3 +587,5 @@ EOF;
 		echo '<p><a href="?event=rah_terminal">'.gTxt('continue').'</a></p>';
 	}
 }
+
+rah_terminal::get();
