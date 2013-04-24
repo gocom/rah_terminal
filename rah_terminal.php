@@ -30,25 +30,23 @@ class rah_terminal
 	 * @var array
 	 */
 
-	private $error = array();
+	protected $error = array();
 
 	/**
 	 * Terminal callbacks.
 	 *
-	 * @access private
-	 * @see    rah_terminal::add_terminal()
+	 * @see rah_terminal::add_terminal()
 	 */
 
-	private $terminals = array();
+	protected $terminals = array();
 
 	/**
 	 * Terminal labels.
 	 *
-	 * @access private
-	 * @see    rah_terminal::add_terminal()
+	 * @see rah_terminal::add_terminal()
 	 */
 
-	private $terminal_labels = array();
+	protected $terminal_labels = array();
 
 	/**
 	 * Diagnostics notes. Attached to result messages.
@@ -208,7 +206,8 @@ class rah_terminal
 	 * user doesn't have privileges to.
 	 */
 
-	private function verify_terminals() {
+	protected function verify_terminals()
+	{
 		foreach ($this->terminals as $name => $callback)
 		{
 			if (!has_privs('rah_terminal.'.$name) || !is_callable($callback))
@@ -375,7 +374,7 @@ class rah_terminal
 	 * @return string The input in safe format
 	 */
 
-	private function output($code)
+	protected function output($code)
 	{
 		if (is_bool($code))
 		{
@@ -404,7 +403,7 @@ class rah_terminal
 	 * @return mixed  Returned value, NULL or FALSE
 	 */
 
-	private function process_php($php)
+	protected function process_php($php)
 	{
 		return eval("echo ' '; {$php}");
 	}
@@ -418,7 +417,7 @@ class rah_terminal
 	 * @return string Standard output
 	 */
 
-	private function process_exec($cmd)
+	protected function process_exec($cmd)
 	{
 		system($cmd, $output);
 		return $output;
@@ -431,7 +430,7 @@ class rah_terminal
 	 * @return mixed
 	 */
 
-	private function process_sql($sql)
+	protected function process_sql($sql)
 	{
 		global $DB;
 
