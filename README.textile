@@ -14,7 +14,7 @@ h2. Requirements
 
 h2. Modules
 
-p. Modules can be used to extend rah_terminal's functionality, adding additional terminal types. The following modules are available.
+p. Modules can be used to extend rah_terminal's functionality, adding additional terminal types. Modules are like any other Textpattern plugin, and can be installed the same way. The following modules are available.
 
 * "Markdown":https://github.com/gocom/rah_terminal_markdown
 * "Textile":https://github.com/gocom/rah_terminal__textile
