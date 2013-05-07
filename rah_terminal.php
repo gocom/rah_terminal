@@ -4,8 +4,6 @@
  * Rah_terminal plugin for Textpattern CMS.
  *
  * @author    Jukka Svahn
- * @copyright (c) 2012 Jukka Svahn
- * @date      2012-
  * @license   GNU GPLv2
  * @link      https://github.com/gocom/rah_terminal
  *
