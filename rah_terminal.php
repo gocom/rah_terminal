@@ -393,6 +393,46 @@ class rah_terminal
 	}
 
 	/**
+	 * Formats a map to an ASCII table.
+	 *
+	 * @param  array  $data The input 
+	 * @return string The input arranged into ascii table
+	 *  @link http://www.sitepoint.com/forums/showthread.php?437480-Print-ASCII-table-from-MySQL-results&s=101fdc0672d4bb3d184115191405a5e2&p=3159963&viewfull=1#post3159963
+	 */	
+	protected function ascii_table($data) 
+	{
+		$keys = array_keys(end($data));
+		$fmt = $sep = array();
+		
+		# calculate optimal optimal_widthth
+		$optimal_width = array_map('strlen', $keys);
+		foreach($data as $row) {
+			foreach(array_values($row) as $k => $v)
+				$optimal_width[$k] = max($optimal_width[$k], strlen($v));
+		}
+		
+		# build format and separator strings
+		foreach($optimal_width as $k => $v) {
+			$fmt[$k] = "%-{$v}s";
+			$sep[$k] = str_repeat('-', $v);
+		}
+		$fmt = '| ' . implode(' | ', $fmt) . ' |';
+		$sep = '+-' . implode('-+-', $sep) . '-+';
+		
+		# create header
+		$buf = array($sep, vsprintf($fmt, $keys), $sep);
+		
+		# print data
+		foreach($data as $row) {
+			$buf[] = vsprintf($fmt, $row);
+			$buf[] = $sep;
+		}
+		
+		# finis
+		return implode("\n", $buf);
+	} 
+
+	/**
 	 * Evaluates PHP.
 	 *
 	 * This method handles 'php' terminal option.
@@ -457,7 +497,7 @@ class rah_terminal
 				$out[] = $r;
 			}
 
-			return $out;
+			return $this->ascii_table($out) ;
 		}
 
 		return $q;
