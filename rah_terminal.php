@@ -393,11 +393,11 @@ class rah_terminal
 	}
 
 	/**
-	 * Takes sql command's output and makes that into human-readable foramtted table.
+	 * Formats a map to an ASCII table.
 	 *
-	 * @param  mixed  $data The input 
+	 * @param  array  $data The input 
 	 * @return string The input arranged into ascii table
-	 * NIH : http://www.sitepoint.com/forums/showthread.php?437480-Print-ASCII-table-from-MySQL-results&s=101fdc0672d4bb3d184115191405a5e2&p=3159963&viewfull=1#post3159963
+	 *  @link http://www.sitepoint.com/forums/showthread.php?437480-Print-ASCII-table-from-MySQL-results&s=101fdc0672d4bb3d184115191405a5e2&p=3159963&viewfull=1#post3159963
 	 */	
 	protected function ascii_table($data) 
 	{
