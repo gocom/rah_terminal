@@ -401,18 +401,18 @@ class rah_terminal
 	 */	
 	protected function ascii_table($data) 
 	{
-
 		$keys = array_keys(end($data));
+		$fmt = $sep = array();
 		
-		# calculate optimal width
-		$wid = array_map('strlen', $keys);
+		# calculate optimal optimal_widthth
+		$optimal_width = array_map('strlen', $keys);
 		foreach($data as $row) {
 			foreach(array_values($row) as $k => $v)
-				$wid[$k] = max($wid[$k], strlen($v));
+				$optimal_width[$k] = max($optimal_width[$k], strlen($v));
 		}
 		
 		# build format and separator strings
-		foreach($wid as $k => $v) {
+		foreach($optimal_width as $k => $v) {
 			$fmt[$k] = "%-{$v}s";
 			$sep[$k] = str_repeat('-', $v);
 		}
